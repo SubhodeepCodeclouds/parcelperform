@@ -186,10 +186,10 @@ function sendShipmentsToParcelPerform()
                 ],
                 'payment_type' => 'Card',
                 'item_count' => count($lineItems),
-                'length' => '30 cm',
-                'width' => '30 cm',
-                'height' => '30 cm',
-                'weight' => '1 kg',
+                'length' => $package['Length'] ?? "",
+                'width' => $package['Width'] ?? "",
+                'height' => $package['Height'] ?? "",
+                'weight' => $package['Weight'] ?? "",
             ];
 
             // Replace with your actual access token
@@ -204,6 +204,7 @@ function sendShipmentsToParcelPerform()
                 "Authorization: Bearer {$accessToken}",
                 "Content-Type: application/json",
             ]);
+
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
 
             $response = curl_exec($ch);
