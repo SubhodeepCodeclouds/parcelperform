@@ -163,7 +163,7 @@ function sendShipmentsToParcelPerform()
 
             $payload = [
                 'shipment_id' => $order['ReferenceNum'],
-                'tracking_number' => $package['TrackingNumber'] ?? 'no-tracking',
+                'tracking_number' => $package['TrackingNumber'] ?? $routing['TrackingNumber'] ?? 'no-tracking',
                 'carrier_reference' => $routing['Carrier'] ?? 'unknown',
                 'carrier_code' => strtolower($routing['ScacCode'] ?? 'unknown'),
                 'shipment_date' => $readOnly['ShipDate'] ?? date("Y-m-d"),
