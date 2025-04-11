@@ -166,7 +166,7 @@ function sendShipmentsToParcelPerform()
                 'tracking_number' => $package['TrackingNumber'] ?? $routing['TrackingNumber'] ?? 'no-tracking',
                 'carrier_reference' => $routing['Carrier'] ?? 'unknown',
                 'carrier_code' => strtolower($routing['ScacCode'] ?? 'unknown'),
-                'shipment_date' => $readOnly['ShipDate'] ?? date("Y-m-d"),
+                'shipment_date' => $readOnly['ShipDate'] ?? $package['CreateDate'] ?? date("Y-m-d"),
                 'origin_country_code' => 'US',
                 'destination_country_code' => $shipTo['Country'] ?? '',
                 'status' => 'created',
