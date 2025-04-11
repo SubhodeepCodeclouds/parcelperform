@@ -166,7 +166,7 @@ function sendShipmentsToParcelPerform()
                 'tracking_number' => $package['TrackingNumber'] ?? $routing['TrackingNumber'] ?? 'no-tracking',
                 'carrier_reference' => $routing['Carrier'] ?? 'unknown',
                 'carrier_code' => strtolower($routing['ScacCode'] ?? 'unknown'),
-                'shipment_date' => $readOnly['ShipDate'] ?? $package['CreateDate'] ?? date("Y-m-d"),
+                'shipment_date' => $readOnly['ShipDate'] ?? date("Y-m-d"),
                 'origin_country_code' => 'US',
                 'destination_country_code' => $shipTo['Country'] ?? '',
                 'status' => 'created',
@@ -186,10 +186,10 @@ function sendShipmentsToParcelPerform()
                 ],
                 'payment_type' => 'Card',
                 'item_count' => count($lineItems),
-                'length' => $package['Length'] ?? "",
-                'width' => $package['Width'] ?? "",
-                'height' => $package['Height'] ?? "",
-                'weight' => $package['Weight'] ?? "",
+                'length' => '30 cm',
+                'width' => '30 cm',
+                'height' => '30 cm',
+                'weight' => '1 kg',
             ];
 
             // Replace with your actual access token
@@ -204,7 +204,6 @@ function sendShipmentsToParcelPerform()
                 "Authorization: Bearer {$accessToken}",
                 "Content-Type: application/json",
             ]);
-
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
 
             $response = curl_exec($ch);
